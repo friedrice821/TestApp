@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TestApp</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="admin">Admin</string>
+    <string name="visitor">Visitor</string>
+    <string name="host">Host</string>
+    <string name="what">What type of User are you?</string>
+    <string name="title_activity_host_menu">HostMenu</string>
+    <string name="change">Change Preferences</string>
+    <string name="find">Find Hosts</string>
+    <string name="viewM">View Matches</string>
+    <string name="etc">Host</string>
+
+</resources>
