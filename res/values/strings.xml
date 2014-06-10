@@ -13,5 +13,6 @@
     <string name="find">Find Hosts</string>
     <string name="viewM">View Matches</string>
     <string name="etc">Host</string>
+    <string name="title_activity_visitor_menu">VisitorMenu</string>
 
 </resources>

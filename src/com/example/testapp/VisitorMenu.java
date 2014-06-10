@@ -1,20 +1,22 @@
 package com.example.testapp;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBar;
+import android.support.v4.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.os.Build;
 
-public class HostMenu extends ActionBarActivity {
+public class VisitorMenu extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_host_menu);
+		setContentView(R.layout.activity_visitor_menu);
 
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
@@ -26,7 +28,7 @@ public class HostMenu extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.host_menu, menu);
+		getMenuInflater().inflate(R.menu.visitor_menu, menu);
 		return true;
 	}
 
@@ -53,7 +55,7 @@ public class HostMenu extends ActionBarActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_host_menu,
+			View rootView = inflater.inflate(R.layout.fragment_visitor_menu,
 					container, false);
 			return rootView;
 		}
