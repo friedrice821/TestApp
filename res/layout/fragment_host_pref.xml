@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" > 
+  
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/emailAddress"
+        android:textAppearance="?android:attr/textAppearanceMedium" /> 
+  
+    <EditText
+        android:id="@+id/prefEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress" > 
+  
+        <requestFocus /> 
+    </EditText> 
+  
+    <TextView
+        android:id="@+id/TextPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pass"
+        android:textAppearance="?android:attr/textAppearanceMedium" /> 
+  
+    <EditText
+        android:id="@+id/prefPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword" /> 
+  
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:textAppearance="?android:attr/textAppearanceMedium" /> 
+  
+    <EditText
+        android:id="@+id/prefName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName" /> 
+  
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mailAddress"
+        android:textAppearance="?android:attr/textAppearanceMedium" /> 
+  
+    <EditText
+        android:id="@+id/prefAddr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPostalAddress" /> 
+  
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/phone"
+        android:textAppearance="?android:attr/textAppearanceMedium" /> 
+  
+    <EditText
+        android:id="@+id/prefPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="phone" /> 
+  
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium" /> 
+  
+    <Button
+        android:id="@+id/prefReg"
+        android:layout_width="253dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/register" /> 
+  
+</LinearLayout> 

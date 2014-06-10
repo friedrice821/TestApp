@@ -14,5 +14,16 @@
     <string name="viewM">View Matches</string>
     <string name="etc">Host</string>
     <string name="title_activity_visitor_menu">VisitorMenu</string>
+    <string name="title_activity_host_pref">HostPref</string>
+    <string name="name">Full Name</string> 
+    <string name="mailAddress">Mailing Address</string> 
+    <string name="emailAddress">Email </string> 
+    <string name="blurb">A little about yourself</string> 
+    <string name="phone">Phone Number</string> 
+    <string name="smokingPref">Smoking preference?</string> 
+    <string name="username">Username</string> 
+    <string name="pass">Password</string> 
+    <string name="register">Register</string> 
+
 
 </resources>

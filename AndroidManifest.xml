@@ -60,6 +60,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="VisitorLogin" />
         </activity>
+        <activity
+            android:name="com.example.testapp.HostPref"
+            android:label="@string/title_activity_host_pref"
+            android:parentActivityName="com.example.testapp.HostMenu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="HostMenu" />
+        </activity>
     </application>
 
 </manifest>
