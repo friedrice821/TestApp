@@ -68,6 +68,30 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="HostMenu" />
         </activity>
+        <activity
+            android:name="com.example.testapp.VisitorPref"
+            android:label="@string/title_activity_visitor_pref"
+            android:parentActivityName="com.example.testapp.VisitorMenu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="VisitorMenu" />
+        </activity>
+        <activity
+            android:name="com.example.testapp.VisitorMenu2"
+            android:label="@string/title_activity_visitor_menu2"
+            android:parentActivityName="com.example.testapp.VisitorMenu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="VisitorMenu" />
+        </activity>
+        <activity
+            android:name="com.example.testapp.Wizard"
+            android:label="@string/title_activity_wizard"
+            android:parentActivityName="com.example.testapp.VisitorMenu2" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="VisitorMenu2" />
+        </activity>
     </application>
 
 </manifest>

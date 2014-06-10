@@ -1,8 +1,7 @@
 package com.example.testapp;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.OutputStreamWriter;
 import java.util.Calendar;
 
@@ -49,6 +48,7 @@ public class HostPref extends Activity {
 		final CheckBox getBird = (CheckBox) findViewById(R.id.birds);
 		final CheckBox getOther = (CheckBox) findViewById(R.id.other);
 		final EditText getDist = (EditText) findViewById(R.id.prefDist); 
+		final EditText getBlurb = (EditText) findViewById(R.id.prefBlurb); 
 		
 		start = (DatePicker) findViewById(R.id.prefStart);
 		start.setCalendarViewShown(false);
@@ -71,7 +71,7 @@ public class HostPref extends Activity {
 
 					OutputStreamWriter out= new OutputStreamWriter(openFileOutput(getEmail.getText().toString(), 0));
 
-					out.write(getPass.getText().toString() + "\n");
+					out.write(getPass.getText().toString() + "\n0 0\n");
 					out.write(getName.getText().toString() + "\n");
 					out.write(getAddr.getText().toString() + "\n");
 					out.write(getPhone.getText().toString() + "\n");
@@ -80,37 +80,61 @@ public class HostPref extends Activity {
 					out.write(getDist.getText().toString() + "\n");
 					out.write(start.getMonth() + " " + start.getDayOfMonth() + " " + start.getYear() + "\n");
 					out.write(end.getMonth() + " " + end.getDayOfMonth() + " " + end.getYear() + "\n");
+					out.write(getBlurb.getText().toString() + "\n");
 					
 					out.close();	
 
-					try {
-
-						InputStream in = openFileInput(getEmail.getText().toString());
-						if (in != null) {
-							InputStreamReader tmp=new InputStreamReader(in);
-							BufferedReader reader=new BufferedReader(tmp);
-
-							String str;
-
-							StringBuilder buf=new StringBuilder();
-
-							str = reader.readLine();
-							str = reader.readLine();
-							str = reader.readLine();
-							in.close();
-							getPass.setText(str);
-							//Toast.makeText(this, str, Toast.LENGTH_LONG);
-						}
-
-					} catch (java.io.FileNotFoundException e) {
-
-					}
-					catch (Exception e) {}
+//					try {
+//
+//						InputStream in = openFileInput(getEmail.getText().toString());
+//						if (in != null) {
+//							InputStreamReader tmp=new InputStreamReader(in);
+//							BufferedReader reader=new BufferedReader(tmp);
+//
+//							String str;
+//
+//							StringBuilder buf=new StringBuilder();
+//
+//							str = reader.readLine();
+//							str = reader.readLine();
+//							str = reader.readLine();
+//							in.close();
+//							getPass.setText(str);
+//							//Toast.makeText(this, str, Toast.LENGTH_LONG);
+//						}
+//
+//					} catch (java.io.FileNotFoundException e) {
+//
+//					}
+//					catch (Exception e) {}
 
 
 
 				}
-				catch (Exception t) {}				
+				catch (Exception t) {}		
+				//saving host to host list
+//				try {
+//					OutputStreamWriter save= new OutputStreamWriter(new FileOutputStream("hosts", true));
+//					BufferedWriter out = new BufferedWriter(save);
+//					out.write(getEmail.getText().toString() + "\n");
+//					out.close();
+//				} catch (Exception t) {}	
+//		        try{
+//
+//		            FileWriter fstream = new FileWriter("hosts",true);
+//		            BufferedWriter fbw = new BufferedWriter(fstream);
+//		            fbw.write(getEmail.getText().toString());
+//		            fbw.newLine();
+//		            fbw.close();
+//		        }catch (Exception e) {
+//		            System.out.println("Error: " + e.getMessage());
+//		        }
+				try {
+					OutputStreamWriter save= new OutputStreamWriter(openFileOutput("hosts", MODE_APPEND));
+				BufferedWriter out = new BufferedWriter(save);
+				out.write(getEmail.getText().toString() + "\n");
+				out.close();
+			} catch (Exception t) {}
 			}
 		});
 

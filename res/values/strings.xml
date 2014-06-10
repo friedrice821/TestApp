@@ -28,11 +28,15 @@
     <string name="birds">birds</string>
     <string name="other">other</string>
     <string name="allergies">allergies</string>
-    <string name="register">Register</string> 
-        <string name="pets">Pets</string> 
-        <string name="start">Start Date</string> 
-                <string name="end">End Date</string> 
-                <string name="distance">Distance from UC Davis</string> 
-                
-    
+    <string name="register">Register</string>
+    <string name="pets">Pets</string>
+    <string name="start">Start Date</string>
+    <string name="end">End Date</string>
+    <string name="distance">Distance from UC Davis</string>
+    <string name="title_activity_visitor_pref">VisitorPref</string>
+    <string name="title_activity_visitor_menu2">VisitorMenu2</string>
+    <string name="man">Manual Selection</string>
+    <string name="wiz">Placement Wizard</string>
+    <string name="title_activity_wizard">Wizard</string>
+
 </resources>

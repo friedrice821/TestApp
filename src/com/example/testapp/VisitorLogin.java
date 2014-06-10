@@ -1,5 +1,10 @@
 package com.example.testapp;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -200,43 +205,56 @@ public class VisitorLogin extends Activity {
 		protected Boolean doInBackground(Void... params) {
 			// TODO: attempt authentication against a network service.
 
-			try {
-				// Simulate network access.
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				return false;
-			}
-
-			for (String credential : DUMMY_CREDENTIALS) {
-				String[] pieces = credential.split(":");
-				if (pieces[0].equals(mEmail)) {
-					// Account exists, return true if the password matches.
-					return pieces[1].equals(mPassword);
-				}
-			}
+//			try {
+//				// Simulate network access.
+//				Thread.sleep(2000);
+//			} catch (InterruptedException e) {
+//				return false;
+//			}
+//
+//			for (String credential : DUMMY_CREDENTIALS) {
+//				String[] pieces = credential.split(":");
+//				if (pieces[0].equals(mEmail)) {
+//					// Account exists, return true if the password matches.
+//					return pieces[1].equals(mPassword);
+//				}
+//			}
 
 			// TODO: register the new account here.
-			return true;
-		}
+			String newuser = mEmail.concat(":");
+			newuser = newuser.concat(mPassword);
+			DUMMY_CREDENTIALS[1] = newuser;
+			try {
 
-		@Override
-		protected void onPostExecute(final Boolean success) {
-			mAuthTask = null;
-			showProgress(false);
+				InputStream in = openFileInput(mEmail);
+				if (in != null) {
+					InputStreamReader tmp=new InputStreamReader(in);
+					BufferedReader reader=new BufferedReader(tmp);
 
-			if (success) {
-				finish();
-			} else {
-				mPasswordView
-						.setError(getString(R.string.error_incorrect_password));
-				mPasswordView.requestFocus();
+					String str;
+
+					StringBuilder buf=new StringBuilder();
+
+					str = reader.readLine();
+					in.close();
+					return str.equals(mPassword); 
+				}
+
+			} catch (java.io.FileNotFoundException e) {
+				try {
+
+				OutputStreamWriter out= new OutputStreamWriter(openFileOutput(mEmail, 0));
+
+				out.write(mPassword);
+
+				out.close();	
+				return true;
+				}
+				catch (Exception t) {}
 			}
-		}
+			catch (Exception e) {}
+			return true;
 
-		@Override
-		protected void onCancelled() {
-			mAuthTask = null;
-			showProgress(false);
 		}
 	}
 }
