@@ -1,64 +1,128 @@
 package com.example.testapp;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.OutputStreamWriter;
+import java.util.Calendar;
+
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.DatePicker;
+import android.widget.EditText;
 
-public class VisitorPref extends ActionBarActivity {
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_visitor_pref);
-
-		if (savedInstanceState == null) {
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
-		}
-	}
+public class VisitorPref extends Activity {
+	String email, pass, name, addr, phone; 
+	private DatePicker start, end;
+	private int month, day, year, month2, day2, year2;
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	protected void onCreate(Bundle savedInstanceState) { 
+		// TODO Auto-generated method stub 
+		super.onCreate(savedInstanceState); 
+		setContentView(R.layout.fragment_host_pref); 
 
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.visitor_pref, menu);
-		return true;
-	}
+	} 
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
+	protected void onResume() { 
+		// TODO Auto-generated method stub 
+		super.onResume(); 
+		//        SharedPreferences prefs = this.getSharedPreferences(        // http://androidgreeve.blogspot.com/2014/01/How-to-use-Shared-Preferences-and-manage-User-Sessions.html#.U5XHXPldXm4 
+		//                "com.example.homestay", Context.MODE_PRIVATE); 
+		//        final Editor editor = prefs.edit(); 
+
+		final EditText getEmail = (EditText) findViewById(R.id.prefEmail); 
+		final EditText getPass = (EditText) findViewById(R.id.prefPass); 
+		final EditText getName = (EditText) findViewById(R.id.prefName); 
+		final EditText getAddr = (EditText) findViewById(R.id.prefAddr); 
+		final EditText getPhone = (EditText) findViewById(R.id.prefPhone); 
+		final CheckBox getSmoke = (CheckBox) findViewById(R.id.prefSmoke);
+		final CheckBox getDog = (CheckBox) findViewById(R.id.dogs);
+		final CheckBox getCat = (CheckBox) findViewById(R.id.cats);
+		final CheckBox getBird = (CheckBox) findViewById(R.id.birds);
+		final CheckBox getOther = (CheckBox) findViewById(R.id.other);
+		final EditText getDist = (EditText) findViewById(R.id.prefDist); 
+		final EditText getBlurb = (EditText) findViewById(R.id.prefBlurb); 
+
+		start = (DatePicker) findViewById(R.id.prefStart);
+		start.setCalendarViewShown(false);
+		final Calendar c = Calendar.getInstance();
+		year = c.get(Calendar.YEAR);
+		month = c.get(Calendar.MONTH);
+		day = c.get(Calendar.DAY_OF_MONTH);
+		start.init(year, month, day, null);
+
+		end = (DatePicker) findViewById(R.id.prefEnd);
+		end.setCalendarViewShown(false);
+		end.init(year, month, day, null);
+
+		Button register = (Button) findViewById(R.id.prefReg); 
+		register.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				try {
+
+					OutputStreamWriter out= new OutputStreamWriter(openFileOutput(getEmail.getText().toString(), 0));
+
+					out.write(getPass.getText().toString() + "\n1 0\n");
+					out.write(getName.getText().toString() + "\n");
+					out.write(getAddr.getText().toString() + "\n");
+					out.write(getPhone.getText().toString() + "\n");
+					out.write(getSmoke.isChecked() + "\n"); 
+					out.write(getDog.isChecked() + " " +  getCat.isChecked() + " "+ getBird.isChecked()+ " "+ getOther.isChecked() + "\n"); 
+					out.write(getDist.getText().toString() + "\n");
+					out.write(start.getMonth() + " " + start.getDayOfMonth() + " " + start.getYear() + "\n");
+					out.write(end.getMonth() + " " + end.getDayOfMonth() + " " + end.getYear() + "\n");
+					out.write(getBlurb.getText().toString() + "\n");
+
+					out.close();	
+
+
+
+
+
+				}
+				catch (Exception t) {}		
+
+			}
+		});
+
+
 	}
 
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
 
-		public PlaceholderFragment() {
-		}
+
+	public static class DatePickerFragment extends DialogFragment
+	implements DatePickerDialog.OnDateSetListener {
 
 		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_visitor_pref,
-					container, false);
-			return rootView;
+		public Dialog onCreateDialog(Bundle savedInstanceState) {
+			// Use the current date as the default date in the picker
+			final Calendar c = Calendar.getInstance();
+			int year = c.get(Calendar.YEAR);
+			int month = c.get(Calendar.MONTH);
+			int day = c.get(Calendar.DAY_OF_MONTH);
+
+			// Create a new instance of DatePickerDialog and return it
+			return new DatePickerDialog(getActivity(), this, year, month, day);
+		}
+
+		public void onDateSet(DatePicker view, int year, int month, int day) {
+			// Do something with the date chosen by the user
 		}
 	}
 
-}
+
+
+
+
+} 
+
+

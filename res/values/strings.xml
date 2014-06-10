@@ -27,6 +27,7 @@
     <string name="cats">cats</string>
     <string name="birds">birds</string>
     <string name="other">other</string>
+    <string name="othera">other animals</string>
     <string name="allergies">allergies</string>
     <string name="register">Register</string>
     <string name="pets">Pets</string>
@@ -36,7 +37,11 @@
     <string name="title_activity_visitor_pref">VisitorPref</string>
     <string name="title_activity_visitor_menu2">VisitorMenu2</string>
     <string name="man">Manual Selection</string>
+    <string name="smoke">Smoking</string>
+    <string name="empty"> </string>
     <string name="wiz">Placement Wizard</string>
     <string name="title_activity_wizard">Wizard</string>
+     <string name="explain">Rate importance of similarity in preferences from 1 (not important) to 5 (absolutely necessary)</string>
+    
 
 </resources>
