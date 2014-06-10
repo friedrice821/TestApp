@@ -9,6 +9,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ public class VisitorLogin extends Activity {
 	 * TODO: remove after connecting to a real authentication system.
 	 */
 	private static final String[] DUMMY_CREDENTIALS = new String[] {
-			"foo@example.com:hello", "bar@example.com:world" };
+		"foo@example.com:hello", "bar@example.com:world" };
 
 	/**
 	 * The default email to populate the email field with.
@@ -66,17 +67,17 @@ public class VisitorLogin extends Activity {
 
 		mPasswordView = (EditText) findViewById(R.id.password);
 		mPasswordView
-				.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-					@Override
-					public boolean onEditorAction(TextView textView, int id,
-							KeyEvent keyEvent) {
-						if (id == R.id.login || id == EditorInfo.IME_NULL) {
-							attemptLogin();
-							return true;
-						}
-						return false;
-					}
-				});
+		.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView textView, int id,
+					KeyEvent keyEvent) {
+				if (id == R.id.login || id == EditorInfo.IME_NULL) {
+					attemptLogin();
+					return true;
+				}
+				return false;
+			}
+		});
 
 		mLoginFormView = findViewById(R.id.login_form);
 		mLoginStatusView = findViewById(R.id.login_status);
@@ -169,25 +170,25 @@ public class VisitorLogin extends Activity {
 
 			mLoginStatusView.setVisibility(View.VISIBLE);
 			mLoginStatusView.animate().setDuration(shortAnimTime)
-					.alpha(show ? 1 : 0)
-					.setListener(new AnimatorListenerAdapter() {
-						@Override
-						public void onAnimationEnd(Animator animation) {
-							mLoginStatusView.setVisibility(show ? View.VISIBLE
-									: View.GONE);
-						}
-					});
+			.alpha(show ? 1 : 0)
+			.setListener(new AnimatorListenerAdapter() {
+				@Override
+				public void onAnimationEnd(Animator animation) {
+					mLoginStatusView.setVisibility(show ? View.VISIBLE
+							: View.GONE);
+				}
+			});
 
 			mLoginFormView.setVisibility(View.VISIBLE);
 			mLoginFormView.animate().setDuration(shortAnimTime)
-					.alpha(show ? 0 : 1)
-					.setListener(new AnimatorListenerAdapter() {
-						@Override
-						public void onAnimationEnd(Animator animation) {
-							mLoginFormView.setVisibility(show ? View.GONE
-									: View.VISIBLE);
-						}
-					});
+			.alpha(show ? 0 : 1)
+			.setListener(new AnimatorListenerAdapter() {
+				@Override
+				public void onAnimationEnd(Animator animation) {
+					mLoginFormView.setVisibility(show ? View.GONE
+							: View.VISIBLE);
+				}
+			});
 		} else {
 			// The ViewPropertyAnimator APIs are not available, so simply show
 			// and hide the relevant UI components.
@@ -205,20 +206,20 @@ public class VisitorLogin extends Activity {
 		protected Boolean doInBackground(Void... params) {
 			// TODO: attempt authentication against a network service.
 
-//			try {
-//				// Simulate network access.
-//				Thread.sleep(2000);
-//			} catch (InterruptedException e) {
-//				return false;
-//			}
-//
-//			for (String credential : DUMMY_CREDENTIALS) {
-//				String[] pieces = credential.split(":");
-//				if (pieces[0].equals(mEmail)) {
-//					// Account exists, return true if the password matches.
-//					return pieces[1].equals(mPassword);
-//				}
-//			}
+			//			try {
+			//				// Simulate network access.
+			//				Thread.sleep(2000);
+			//			} catch (InterruptedException e) {
+			//				return false;
+			//			}
+			//
+			//			for (String credential : DUMMY_CREDENTIALS) {
+			//				String[] pieces = credential.split(":");
+			//				if (pieces[0].equals(mEmail)) {
+			//					// Account exists, return true if the password matches.
+			//					return pieces[1].equals(mPassword);
+			//				}
+			//			}
 
 			// TODO: register the new account here.
 			String newuser = mEmail.concat(":");
@@ -243,18 +244,42 @@ public class VisitorLogin extends Activity {
 			} catch (java.io.FileNotFoundException e) {
 				try {
 
-				OutputStreamWriter out= new OutputStreamWriter(openFileOutput(mEmail, 0));
+					OutputStreamWriter out= new OutputStreamWriter(openFileOutput(mEmail, 0));
 
-				out.write(mPassword);
+					out.write(mPassword);
 
-				out.close();	
-				return true;
+					out.close();	
+					return true;
 				}
 				catch (Exception t) {}
 			}
 			catch (Exception e) {}
 			return true;
+		}
 
+
+
+		@Override
+		protected void onPostExecute(final Boolean success) {
+			mAuthTask = null;
+			showProgress(false);
+
+			if (success) {
+				Intent intent = new Intent("com.homestay.VISITORMENU");
+				startActivity(intent);
+
+				finish();
+			} else {
+				mPasswordView
+				.setError(getString(R.string.error_incorrect_password));
+				mPasswordView.requestFocus();
+			}
+		}
+
+		@Override
+		protected void onCancelled() {
+			mAuthTask = null;
+			showProgress(false);
 		}
 	}
 }

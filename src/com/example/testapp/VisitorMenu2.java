@@ -3,6 +3,7 @@ package com.example.testapp;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,6 +14,18 @@ import android.os.Build;
 
 public class VisitorMenu2 extends ActionBarActivity {
 
+	public void goWiz(View view) {
+		Intent intent = new Intent(this, Wizard.class);
+	    startActivity(intent);
+
+		}
+	
+	public void goMan(View view) {
+		Intent intent = new Intent(this, HostListActivity.class);
+	    startActivity(intent);
+
+		}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

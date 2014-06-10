@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="19" />
 
     <application
@@ -56,6 +56,12 @@
             android:name="com.example.testapp.VisitorMenu"
             android:label="@string/title_activity_visitor_menu"
             android:parentActivityName="com.example.testapp.VisitorLogin" >
+            <intent-filter>
+                <action android:name="com.homestay.VISITORMENU" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="VisitorLogin" />
@@ -67,6 +73,42 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="HostMenu" />
+        </activity>
+        <activity
+            android:name="com.example.testapp.VisitorPref"
+            android:label="@string/title_activity_visitor_pref"
+            android:parentActivityName="com.example.testapp.VisitorMenu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="VisitorMenu" />
+        </activity>
+        <activity
+            android:name="com.example.testapp.VisitorMenu2"
+            android:label="@string/title_activity_visitor_menu2"
+            android:parentActivityName="com.example.testapp.VisitorMenu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="VisitorMenu" />
+        </activity>
+        <activity
+            android:name="com.example.testapp.Wizard"
+            android:label="@string/title_activity_wizard"
+            android:parentActivityName="com.example.testapp.VisitorMenu2" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="VisitorMenu2" />
+        </activity>
+        <activity
+            android:name="com.example.testapp.HostListActivity"
+            android:label="@string/title_host_list" >
+        </activity>
+        <activity
+            android:name="com.example.testapp.HostDetailActivity"
+            android:label="@string/title_host_detail"
+            android:parentActivityName="com.example.testapp.HostListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.testapp.HostListActivity" />
         </activity>
     </application>
 

@@ -20,7 +20,11 @@ public class VisitorMenu extends ActionBarActivity {
 
 		}
 	
-	
+	public void goFind(View view) {
+		Intent intent = new Intent(this, VisitorMenu2.class);
+	    startActivity(intent);
+
+		}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

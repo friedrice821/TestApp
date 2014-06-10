@@ -32,7 +32,8 @@
       <RatingBar
           android:id="@+id/startbar"
           android:layout_width="wrap_content"
-          android:layout_height="wrap_content" />
+          android:layout_height="wrap_content"
+          android:stepSize="1" />
 
       <TextView
           android:id="@+id/textView4"
@@ -44,6 +45,8 @@
       <RatingBar
           android:id="@+id/endbar"
           android:layout_width="wrap_content"
+                    android:stepSize="1" 
+          
           android:layout_height="wrap_content" />
       
       <TextView
@@ -56,6 +59,7 @@
       <RatingBar
           android:id="@+id/smokebar"
           android:layout_width="wrap_content"
+                    android:stepSize="1" 
           android:layout_height="wrap_content" />
       
       <TextView
@@ -68,6 +72,7 @@
       <RatingBar
           android:id="@+id/dogbar"
           android:layout_width="wrap_content"
+                    android:stepSize="1" 
           android:layout_height="wrap_content" />
 
       <TextView
@@ -80,6 +85,7 @@
       <RatingBar
           android:id="@+id/catbar"
           android:layout_width="wrap_content"
+                    android:stepSize="1" 
           android:layout_height="wrap_content" />
 
       <TextView
@@ -92,6 +98,7 @@
       <RatingBar
           android:id="@+id/birdbar"
           android:layout_width="wrap_content"
+                    android:stepSize="1" 
           android:layout_height="wrap_content" />
       
             <TextView
@@ -104,6 +111,7 @@
       <RatingBar
           android:id="@+id/otherbar"
           android:layout_width="wrap_content"
+                    android:stepSize="1" 
           android:layout_height="wrap_content" />
       
   
