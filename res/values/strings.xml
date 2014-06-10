@@ -15,15 +15,24 @@
     <string name="etc">Host</string>
     <string name="title_activity_visitor_menu">VisitorMenu</string>
     <string name="title_activity_host_pref">HostPref</string>
-    <string name="name">Full Name</string> 
-    <string name="mailAddress">Mailing Address</string> 
-    <string name="emailAddress">Email </string> 
-    <string name="blurb">A little about yourself</string> 
-    <string name="phone">Phone Number</string> 
-    <string name="smokingPref">Smoking preference?</string> 
-    <string name="username">Username</string> 
-    <string name="pass">Password</string> 
+    <string name="name">Full Name</string>
+    <string name="mailAddress">Mailing Address</string>
+    <string name="emailAddress">Email </string>
+    <string name="blurb">A little about yourself</string>
+    <string name="phone">Phone Number</string>
+    <string name="smokingPref">Prefer Not Smoking</string>
+    <string name="username">Username</string>
+    <string name="pass">Password</string>
+    <string name="dogs">dogs</string>
+    <string name="cats">cats</string>
+    <string name="birds">birds</string>
+    <string name="other">other</string>
+    <string name="allergies">allergies</string>
     <string name="register">Register</string> 
-
-
+        <string name="pets">Pets</string> 
+        <string name="start">Start Date</string> 
+                <string name="end">End Date</string> 
+                <string name="distance">Distance from UC Davis</string> 
+                
+    
 </resources>

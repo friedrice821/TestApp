@@ -81,13 +81,90 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="phone" /> 
-  
-    <TextView
-        android:id="@+id/textView3"
+        android:inputType="phone" />
+
+    <CheckBox
+        android:id="@+id/prefSmoke"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium" /> 
+        android:text="@string/smokingPref" />
+
+    <TextView
+        android:id="@+id/pets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pets"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <CheckBox
+        android:id="@+id/dogs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dogs" />
+
+    <CheckBox
+        android:id="@+id/cats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cats" />
+
+    <CheckBox
+        android:id="@+id/birds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/birds" />
+
+    <CheckBox
+        android:id="@+id/other"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/other" />
+
+    <TextView
+        android:id="@+id/t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/distance"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/prefDist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <DatePicker
+        android:id="@+id/prefStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/end"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <DatePicker
+        android:id="@+id/prefEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/prefBlurb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/blurb"
+        android:inputType="textMultiLine" />
   
     <Button
         android:id="@+id/prefReg"

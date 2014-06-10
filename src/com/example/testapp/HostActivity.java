@@ -1,5 +1,10 @@
 package com.example.testapp;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -26,7 +31,7 @@ public class HostActivity extends Activity {
 	 * TODO: remove after connecting to a real authentication system.
 	 */
 	private static final String[] DUMMY_CREDENTIALS = new String[] {
-			"foo@example.com:hello", "bar@example.com:world" };
+		"foo@example.com:hello", "bar@example.com:world" };
 
 	/**
 	 * The default email to populate the email field with.
@@ -62,17 +67,17 @@ public class HostActivity extends Activity {
 
 		mPasswordView = (EditText) findViewById(R.id.password);
 		mPasswordView
-				.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-					@Override
-					public boolean onEditorAction(TextView textView, int id,
-							KeyEvent keyEvent) {
-						if (id == R.id.login || id == EditorInfo.IME_NULL) {
-							attemptLogin();
-							return true;
-						}
-						return false;
-					}
-				});
+		.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView textView, int id,
+					KeyEvent keyEvent) {
+				if (id == R.id.login || id == EditorInfo.IME_NULL) {
+					attemptLogin();
+					return true;
+				}
+				return false;
+			}
+		});
 
 		mLoginFormView = findViewById(R.id.login_form);
 		mLoginStatusView = findViewById(R.id.login_status);
@@ -165,25 +170,25 @@ public class HostActivity extends Activity {
 
 			mLoginStatusView.setVisibility(View.VISIBLE);
 			mLoginStatusView.animate().setDuration(shortAnimTime)
-					.alpha(show ? 1 : 0)
-					.setListener(new AnimatorListenerAdapter() {
-						@Override
-						public void onAnimationEnd(Animator animation) {
-							mLoginStatusView.setVisibility(show ? View.VISIBLE
-									: View.GONE);
-						}
-					});
+			.alpha(show ? 1 : 0)
+			.setListener(new AnimatorListenerAdapter() {
+				@Override
+				public void onAnimationEnd(Animator animation) {
+					mLoginStatusView.setVisibility(show ? View.VISIBLE
+							: View.GONE);
+				}
+			});
 
 			mLoginFormView.setVisibility(View.VISIBLE);
 			mLoginFormView.animate().setDuration(shortAnimTime)
-					.alpha(show ? 0 : 1)
-					.setListener(new AnimatorListenerAdapter() {
-						@Override
-						public void onAnimationEnd(Animator animation) {
-							mLoginFormView.setVisibility(show ? View.GONE
-									: View.VISIBLE);
-						}
-					});
+			.alpha(show ? 0 : 1)
+			.setListener(new AnimatorListenerAdapter() {
+				@Override
+				public void onAnimationEnd(Animator animation) {
+					mLoginFormView.setVisibility(show ? View.GONE
+							: View.VISIBLE);
+				}
+			});
 		} else {
 			// The ViewPropertyAnimator APIs are not available, so simply show
 			// and hide the relevant UI components.
@@ -201,27 +206,60 @@ public class HostActivity extends Activity {
 		protected Boolean doInBackground(Void... params) {
 			// TODO: attempt authentication against a network service.
 
-			try {
-				// Simulate network access.
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				return false;
-			}
-
-			for (String credential : DUMMY_CREDENTIALS) {
-				String[] pieces = credential.split(":");
-				if (pieces[0].equals(mEmail)) {
-					// Account exists, return true if the password matches.
-					return pieces[1].equals(mPassword);
-				}
-			}
+//			try {
+//				// Simulate network access.
+//				Thread.sleep(2000);
+//			} catch (InterruptedException e) {
+//				return false;
+//			}
+//
+//			for (String credential : DUMMY_CREDENTIALS) {
+//				String[] pieces = credential.split(":");
+//				if (pieces[0].equals(mEmail)) {
+//					// Account exists, return true if the password matches.
+//					return pieces[1].equals(mPassword);
+//				}
+//			}
 
 			// TODO: register the new account here.
 			String newuser = mEmail.concat(":");
 			newuser = newuser.concat(mPassword);
 			DUMMY_CREDENTIALS[1] = newuser;
+			try {
+
+				InputStream in = openFileInput(mEmail);
+				if (in != null) {
+					InputStreamReader tmp=new InputStreamReader(in);
+					BufferedReader reader=new BufferedReader(tmp);
+
+					String str;
+
+					StringBuilder buf=new StringBuilder();
+
+					str = reader.readLine();
+					in.close();
+					return str.equals(mPassword); 
+				}
+
+			} catch (java.io.FileNotFoundException e) {
+				try {
+
+				OutputStreamWriter out= new OutputStreamWriter(openFileOutput(mEmail, 0));
+
+				out.write(mPassword);
+
+				out.close();	
+				return true;
+				}
+				catch (Exception t) {}
+			}
+			catch (Exception e) {}
 			return true;
+
 		}
+
+
+
 
 		@Override
 		protected void onPostExecute(final Boolean success) {
@@ -230,12 +268,12 @@ public class HostActivity extends Activity {
 
 			if (success) {
 				Intent intent = new Intent("com.homestay.HOSTMENU");
-			  startActivity(intent);
-				
+				startActivity(intent);
+
 				finish();
 			} else {
 				mPasswordView
-						.setError(getString(R.string.error_incorrect_password));
+				.setError(getString(R.string.error_incorrect_password));
 				mPasswordView.requestFocus();
 			}
 		}
